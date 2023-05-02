@@ -1,5 +1,13 @@
-var builder = WebApplication.CreateBuilder(args);
+using ePerfumes.Data;
+using ePerfumes.Data.Services;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+//DbContext Configuration
+builder.Services.AddDbContext<AppDBContext>(options=>options.UseSqlServer
+(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+//Services Confugiration
+builder.Services.AddScoped<IMarcasService,MarcaService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -23,5 +31,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//Seed Database
+App_DB_Initializer.Seed(app);
 
 app.Run();
