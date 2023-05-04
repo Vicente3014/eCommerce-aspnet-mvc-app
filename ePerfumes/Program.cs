@@ -8,6 +8,7 @@ builder.Services.AddDbContext<AppDBContext>(options=>options.UseSqlServer
 (builder.Configuration.GetConnectionString("DefaultConnectionString")));
 //Services Confugiration
 builder.Services.AddScoped<IMarcasService,MarcaService>();
+builder.Services.AddScoped<IPerfumeService,PerfumeService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -30,7 +31,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=IndexUser}/{id?}");
 
 //Seed Database
 App_DB_Initializer.Seed(app);
