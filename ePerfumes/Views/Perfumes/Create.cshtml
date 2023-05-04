@@ -26,7 +26,10 @@
                         <span asp-validation-for="Perfume_Name" class="text-danger"></span>
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="perfumetype" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label asp-for="PerfumeType" class="control-label"></label>
+                        <input asp-for="PerfumeType" class="form-control" />
+                        <span asp-validation-for="PerfumeType" class="text-danger"></span>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="PerfumeType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Perfume Type
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -34,6 +37,39 @@
                             <a class="dropdown-item" href="#">Senhora</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <label asp-for="PerfumeVersion" class="control-label"></label>
+                        <input asp-for="PerfumeVersion" class="control.label" />
+                        <span asp-validation-for="PerfumeVersion" class="text-danger"></span>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="PerfumeVersion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Perfume Version
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Eau de parfum</a>
+                            <a class="dropdown-item" href="#">Eau de toilette</a>
+                            <a class="dropdown-item" href="#">Elixir</a>
+                            <a class="dropdown-item" href="#">Eau de parfum Infinissime</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tamanho" class="control-label"></label>
+                        <input asp-for="Tamanho" class="control-label" type="range" id="Tamanho" name="tamanho" min="50" max="150" />    
+                        <span asp-validation-for="Tamanho" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="control-label" type="range" id="Price" name="Price" min="0.0" max="100000000000000000" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    @*<div class="dropdown-menu aria-labelledby="dropdownMenuButton">
+                        @foreach (var item in Model)
+                        {
+                            @Html.DisplayFor(modelItem => item.Marca)
+                        }
+                        <label asp-for="Marca" class="control-label"></label>
+                        <input asp-for="Marca" class="control-label" />
+                    </div>*@
+
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                         <a class="btn btnbtn-outline-secondary" asp-action="Index">Show all</a>
