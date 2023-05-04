@@ -1,4 +1,5 @@
 ﻿using ePerfumes.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ePerfumes.Data.Services
 {
@@ -9,10 +10,10 @@ namespace ePerfumes.Data.Services
         {
             _dbContext = dbContext;
         }
-        public void Add(Marca marca)
+        public async Task AddAsync(Marca marca)
         {
-           _dbContext.Marcas.Add(marca);
-           _dbContext.SaveChanges();
+           await _dbContext.Marcas.AddAsync(marca);
+           await _dbContext.SaveChangesAsync();
         }
 
         public void Delete(int id)
@@ -20,15 +21,16 @@ namespace ePerfumes.Data.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Marca> GetAll()
+        public async Task<IEnumerable<Marca>> GetAllAsync()
         {
-            var result = _dbContext.Marcas.ToList();
+            var result = await _dbContext.Marcas.ToListAsync();
             return result;
         }
 
-        public Marca GetByID(int id)
+        public async Task<Marca> GetByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.Marcas.FirstOrDefaultAsync(n=>n.Marca_ID == id);
+            return result;
         }
 
         public Marca Update(int id, Marca Newmarca)

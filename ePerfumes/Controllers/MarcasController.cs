@@ -13,9 +13,9 @@ namespace ePerfumes.Controllers
         {
             _service = service;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _service.GetAll();
+            var data =await _service.GetAllAsync();
             return View(data);
         }
         //Get: Marca/Create
@@ -31,8 +31,16 @@ namespace ePerfumes.Controllers
             {
                 return View(marca);
             }
-            _service.Add(marca);
+            await _service.AddAsync(marca);
             return RedirectToAction(nameof(Index));
+        }
+
+        //Get: Marcas/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var MarcaDetails = await _service.GetByIDAsync(id);
+            if (MarcaDetails == null) return View("Empty");
+            return View(MarcaDetails);
         }
     }
 }

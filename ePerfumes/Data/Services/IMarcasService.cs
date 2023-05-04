@@ -4,9 +4,9 @@ namespace ePerfumes.Data.Services
 {
     public interface IMarcasService
     {
-        IEnumerable<Marca> GetAll();
-        Marca GetByID(int id);
-        void Add(Marca marca);
+        Task<IEnumerable<Marca>> GetAllAsync();
+        Task<Marca> GetByIDAsync(int id);
+        Task AddAsync(Marca marca);
         Marca Update(int id, Marca Newmarca);
         void Delete(int id);
     }
