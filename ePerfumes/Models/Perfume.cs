@@ -31,8 +31,8 @@ namespace ePerfumes.Models
         public PerfumeVersion PerfumeVersion { get; set; }
 
 
-       //Marca
-       public int Marca_ID { get; set; }
-       public Marca Marca { get; set; }
+        //Marca
+        public int? Marca_ID { get; set; }
+        public Marca Marca { get; set; }
     }
 }

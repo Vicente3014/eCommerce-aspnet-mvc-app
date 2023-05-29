@@ -2,6 +2,7 @@
 using ePerfumes.Data.Services;
 using ePerfumes.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ePerfumes.Controllers
 {
@@ -12,10 +13,10 @@ namespace ePerfumes.Controllers
         public MarcasController(IMarcasService service)
         {
             _service = service;
-        }
+        }       
         public async Task<IActionResult> Index()
         {
-            var data =await _service.GetAllAsync();
+            var data = await _service.GetAllAsync();           
             return View(data);
         }
         //Get: Marca/Create
@@ -41,6 +42,25 @@ namespace ePerfumes.Controllers
             var MarcaDetails = await _service.GetByIDAsync(id);
             if (MarcaDetails == null) return View("Empty");
             return View(MarcaDetails);
+        }
+
+        //Get: Marca/Create
+        public async Task<IActionResult> Edit(int id)
+        {
+            var MarcaDetails = await _service.GetByIDAsync(id);
+            if (MarcaDetails == null) return View("Not Found");
+            return View(MarcaDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Marca_ID,Marca_Name, Marca_Pic_URL")] Marca marca)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(marca);
+            }
+            await _service.UpdateAsync(id,marca);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

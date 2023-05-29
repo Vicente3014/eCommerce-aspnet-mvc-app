@@ -20,7 +20,7 @@ namespace ePerfumes.Data.Services
         {
             throw new NotImplementedException();
         }
-
+        
         public async Task<IEnumerable<Marca>> GetAllAsync()
         {
             var result = await _dbContext.Marcas.ToListAsync();
@@ -33,9 +33,11 @@ namespace ePerfumes.Data.Services
             return result;
         }
 
-        public Marca Update(int id, Marca Newmarca)
+        public async Task<Marca> UpdateAsync(int id,Marca newMarca)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(newMarca);
+            await _dbContext.SaveChangesAsync();
+            return newMarca;
         }
     }
 }

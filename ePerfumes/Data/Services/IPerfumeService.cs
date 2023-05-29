@@ -7,7 +7,7 @@ namespace ePerfumes.Data.Services
         Task<IEnumerable<Perfume>> GetAllAsync();
         Task<Perfume> GetByIDAsync(int id);
         Task AddAsync(Perfume perfume);
-        Marca Update(int id, Perfume Newperfume);
+        Task<Perfume> UpdateAsync(int id, Perfume Newperfume);
         void Delete(int id);
     }
 }

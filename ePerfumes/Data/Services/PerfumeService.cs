@@ -33,10 +33,14 @@ namespace ePerfumes.Data.Services
             return result;
         }
 
-        public Marca Update(int id,Perfume Newperfume)
+        public async Task<Perfume> UpdateAsync(int id,Perfume Newperfume)
         {
-            throw new NotImplementedException();
+            _dbContext.Update(Newperfume);
+            await _dbContext.SaveChangesAsync();
+            return Newperfume;
         }
+       
+
     }
 }
 
