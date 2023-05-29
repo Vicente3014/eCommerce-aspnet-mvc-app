@@ -16,9 +16,11 @@ namespace ePerfumes.Data.Services
            await _dbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.Marcas.FirstOrDefaultAsync(n => n.Marca_ID == id);
+            _dbContext.Marcas.Remove(result);
+            await _dbContext.SaveChangesAsync();
         }
         
         public async Task<IEnumerable<Marca>> GetAllAsync()
@@ -33,11 +35,11 @@ namespace ePerfumes.Data.Services
             return result;
         }
 
-        public async Task<Marca> UpdateAsync(int id,Marca newMarca)
+        public async Task<Marca> UpdateAsync(int id,Marca Newmarca)
         {
-            _dbContext.Update(newMarca);
+            _dbContext.Update(Newmarca);
             await _dbContext.SaveChangesAsync();
-            return newMarca;
+            return Newmarca;
         }
     }
 }

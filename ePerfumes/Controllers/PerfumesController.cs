@@ -47,7 +47,7 @@ namespace ePerfumes.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //Get: Marcas/Details/1
+        //Get: Perfume/Details/1
         public async Task<IActionResult> Details(int id)
         {
             var PerfumeDetails = await _service.GetByIDAsync(id);

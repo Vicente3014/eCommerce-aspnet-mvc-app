@@ -17,6 +17,6 @@ namespace ePerfumes.Models
         public string Marca_Pic_URL { get; set; }
 
         //Relationships
-        public ICollection<Perfume>? Perfumes { get; set; }  
+        public ICollection<Perfume>? Perfumes { get; set; }
     }
 }
