@@ -55,16 +55,22 @@
                         <label asp-for="Tamanho" class="control-label"></label>
                         <input asp-for="Tamanho" class="control-label" type="range" id="Tamanho" name="tamanho" min="50" max="150" />    
                         <span asp-validation-for="Tamanho" class="text-danger"></span>
+                        <span id="TamanhoValor"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Price" class="control-label"></label>
-                        <input asp-for="Price" class="control-label" type="range" id="Price" name="Price" min="0.0" max="100000000000000000" />
+                        <input asp-for="Price" class="control-label" type="range" id="Price" name="Price" min="0.0" max="1000" />
                         <span asp-validation-for="Price" class="text-danger"></span>
+                        <span id="PriceValue"></span>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Selecione a Marca do Perfume</label>
-                        <select asp-for="Marca" asp-items="ViewBag.Marcas"></select>
-                        <label asp-for="Marca" class="control-label"></label>
+                        <select name="MarcaId">
+                            <option value="">Selecione uma marca</option>
+                            @foreach (var marca in Model.MarcaList)
+                            {
+                                <option value="@marca.Marca_ID">@marca.Marca_Name</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Edit" class="btn btn-outline-success float-right" />
@@ -89,4 +95,31 @@
             output.src = $(this).val();
         })
     </script>
+
+    <script>
+        var priceInput = document.getElementById("Price");
+        var priceValue = document.getElementById("PriceValue");
+
+        priceInput.addEventListener("input", function () {
+            var value = priceInput.value;
+            var formattedValue = formatPrice(value);
+            priceValue.textContent = formattedValue;
+        });
+
+        function formatPrice(value) {
+            var formattedValue = Number(value).toLocaleString("pt-PT", { style: "currency", currency: "EUR" });
+            return formattedValue;
+        }
+    </script>
+
+    <script>
+        var tamanhoInput = document.getElementById("Tamanho");
+        var tamanhoValor = document.getElementById("TamanhoValor");
+
+        tamanhoInput.addEventListener("input", function () {
+            tamanhoValor.textContent = tamanhoInput.value;
+        });
+    </script>
+
+
 }

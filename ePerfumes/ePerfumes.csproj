@@ -20,4 +20,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Perfumes\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

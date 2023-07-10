@@ -39,7 +39,14 @@ namespace ePerfumes.Data.Services
             await _dbContext.SaveChangesAsync();
             return Newperfume;
         }
-       
+        public async Task DeleteAsync(int id)
+        {
+            var result = await _dbContext.Perfumes.FirstOrDefaultAsync(n => n.Perfume_ID == id);
+            _dbContext.Perfumes.Remove(result);
+            await _dbContext.SaveChangesAsync();
+        }
+
+
 
     }
 }

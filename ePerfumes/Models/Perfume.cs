@@ -33,6 +33,7 @@ namespace ePerfumes.Models
 
         //Marca
         public int? Marca_ID { get; set; }
-        public Marca Marca { get; set; }
+        public Marca? Marca { get; set; }
+        public List<Marca> MarcaList { get; set; }
     }
 }
